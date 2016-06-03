@@ -1,0 +1,36 @@
+#!/bin/python
+
+import boto3
+import datetime
+
+client = boto3.client('cloudwatch')
+
+def averageCPU(name,value):
+    utc_datetime = datetime.datetime.utcnow()
+    utc_datetimebf = datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
+
+    response = client.get_metric_statistics(
+        Namespace='AWS/EC2',
+        MetricName='CPUUtilization',
+        Dimensions=[
+            {
+                'Name': name,
+                'Value': value
+
+                },
+                ],
+                EndTime=utc_datetime.strftime("%Y-%m-%d %H:%M:%S"),
+                StartTime=utc_datetimebf.strftime("%Y-%m-%d %H:%M:%S"),
+                Period=300,
+                Statistics=['Average',],
+                )
+
+#print response
+    value = response["Datapoints"][0]["Average"]
+#print value
+#    for l in response["Datapoints"]:
+        #print l["Average"]
+    return value
+
+print averageCPU('AutoScalingGroupName','au-group')
+print averageCPU('InstanceId','i-xxxxxxx')
