@@ -25,7 +25,6 @@ def averageCPU(name,value):
                 Statistics=['Average',],
                 )
 
-#print response
     value = response["Datapoints"][0]["Average"]
 #print value
 #    for l in response["Datapoints"]:
