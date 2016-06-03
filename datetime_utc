@@ -26,9 +26,6 @@ def averageCPU(name,value):
                 )
 
     value = response["Datapoints"][0]["Average"]
-#print value
-#    for l in response["Datapoints"]:
-        #print l["Average"]
     return value
 
 print averageCPU('AutoScalingGroupName','au-group')
