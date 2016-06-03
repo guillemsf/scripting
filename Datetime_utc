@@ -1,0 +1,14 @@
+#!/bin/python
+
+import datetime
+import time
+
+utc_datetime = datetime.datetime.utcnow()
+EndTime=utc_datetime.strftime("%Y-%m-%d %H:%M:%S")
+
+utc_datetimebf = datetime.datetime.utcnow() - datetime.timedelta(minutes=15)
+StartTime=utc_datetimebf.strftime("%Y-%m-%d %H:%M:%S")
+
+print "the time is %s" % (EndTime)
+
+print "And 15 min ago... %s" % (StartTime)
